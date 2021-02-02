@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import * as easings from "d3-ease";
+import weatherIcons from "./icons.json";
+import "./css/weather-icons.min.css";
 
 import "./App.css";
 
@@ -77,6 +79,18 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  const getIcon = () => {
+    var prefix = "wi wi-";
+    var code = weather.weather[0].id;
+    var icon = weatherIcons[code].icon;
+    if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+      icon = "day-" + icon;
+    }
+    icon = prefix + icon;
+    console.log(icon);
+    return icon;
+  };
+
   return (
     <div
       className={
@@ -108,12 +122,42 @@ function App() {
               </div>
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
-            <div classname="weather-box-inside">
+            <div className="weather-details">
               <div className="temp-weather">
-                <div className="temp">{Math.round(weather.main.temp)}°c</div>
+                <div className="temp">
+                  <div className="weather-icon-div">
+                    <i className={getIcon() + " weather-icon"}></i>
+                  </div>
+                  <div className="temperature">
+                    {Math.round(weather.main.temp)}°c
+                  </div>
+                </div>
                 <div className="weather">{weather.weather[0].main}</div>
               </div>
-              <div className="temp-properties"></div>
+              <div className="temp-properties">
+                <div className="top-row">
+                  <div className="min-temp block">
+                    {Math.round(weather.main.temp_min)}°c
+                  </div>
+                  <div className="max-temp block">
+                    {Math.round(weather.main.temp_max)}°c
+                  </div>
+                  <div className="pressure block">
+                    {Math.round(weather.main.pressure)} bars
+                  </div>
+                </div>
+                <div className="bottom-row">
+                  <div className="humidity block">
+                    {Math.round(weather.main.humidity)}%
+                  </div>
+                  <div className="min-temp block">
+                    {Math.round(weather.main.temp_min)}°c
+                  </div>
+                  <div className="wind block">
+                    {Math.round(weather.wind.speed)}
+                  </div>
+                </div>
+              </div>
             </div>
           </animated.div>
         ) : (

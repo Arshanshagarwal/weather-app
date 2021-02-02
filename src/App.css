@@ -104,10 +104,6 @@ body {
   justify-content: center;
 }
 
-.weather-box-inside {
-  display: flex;
-}
-
 .location {
   font-size: 70px;
   font-weight: 500;
@@ -118,8 +114,9 @@ body {
 }
 
 .temp {
-  height: 22vh;
-  font-size: 150px;
+  height: 25vh;
+  display: flex;
+  font-size: 50px;
   text-align: center;
   width: 40vw;
 }
@@ -131,7 +128,60 @@ body {
 }
 
 .temp-properties {
+  height: auto;
+  /* background: blue; */
+  width: 60vw;
+}
+
+.temp-weather {
+  width: 40%;
+}
+
+.weather-details {
+  display: flex;
+  height: 40vh;
+}
+
+.temperature {
+  text-align: center;
+  font-size: 150px;
+  margin-left: 50px;
+}
+
+.weather-icon {
   height: 100px;
-  background: blue;
-  width: 40vw;
+  font-size: 150px;
+  width: 100px;
+}
+.weather-icon-div {
+  padding-top: 50px;
+  width: 10vw;
+  display: inline-block;
+  text-align: center;
+  justify-items: center;
+  align-content: center;
+}
+
+.top-row {
+  height: 18vh;
+  /* background: grey; */
+  width: 100%;
+  display: flex;
+}
+
+.bottom-row {
+  height: 18vh;
+  margin-top: 4vh;
+  display: flex;
+  /* background: pink; */
+  width: 100%;
+}
+
+.block {
+  /* background: red; */
+  width: 30%;
+  margin-left: 3%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: 100%;
+  text-align: center;
 }
