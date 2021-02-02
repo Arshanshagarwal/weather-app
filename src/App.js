@@ -3,6 +3,7 @@ import { useSpring, animated } from "react-spring";
 import * as easings from "d3-ease";
 import weatherIcons from "./icons.json";
 import "./css/weather-icons.min.css";
+import Blocks from "./components/blocks/blocks.component.jsx";
 
 import "./App.css";
 
@@ -87,7 +88,6 @@ function App() {
       icon = "day-" + icon;
     }
     icon = prefix + icon;
-    console.log(icon);
     return icon;
   };
 
@@ -136,26 +136,32 @@ function App() {
               </div>
               <div className="temp-properties">
                 <div className="top-row">
-                  <div className="min-temp block">
-                    {Math.round(weather.main.temp_min)}°c
-                  </div>
-                  <div className="max-temp block">
-                    {Math.round(weather.main.temp_max)}°c
-                  </div>
-                  <div className="pressure block">
-                    {Math.round(weather.main.pressure)} bars
-                  </div>
+                  <Blocks
+                    item={`${Math.round(weather.main.temp_min)}°c`}
+                    name="Min Temp"
+                  />
+                  <Blocks
+                    item={`${Math.round(weather.main.temp_max)}°c`}
+                    name="Max Temp"
+                  />
+                  <Blocks
+                    item={`${Math.round(weather.main.pressure)} bars`}
+                    name="Pressure"
+                  />
                 </div>
                 <div className="bottom-row">
-                  <div className="humidity block">
-                    {Math.round(weather.main.humidity)}%
-                  </div>
-                  <div className="min-temp block">
-                    {Math.round(weather.main.temp_min)}°c
-                  </div>
-                  <div className="wind block">
-                    {Math.round(weather.wind.speed)}
-                  </div>
+                  <Blocks
+                    item={Math.round(weather.wind.speed)}
+                    name="Wind Speed"
+                  />
+                  <Blocks
+                    item={`${Math.round(weather.main.temp_min)}°c`}
+                    name="Min Temp"
+                  />
+                  <Blocks
+                    item={`${Math.round(weather.main.humidity)}%`}
+                    name="Hummidity"
+                  />
                 </div>
               </div>
             </div>
